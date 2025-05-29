@@ -4,29 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="../style.css">
-    <style>
-        .login-btn {
-            position: absolute;
-            bottom: 120px; /* Match the position in signup.html */
-            left: 30px; /* Align with the form section */
-        }
-        .social-buttons {
-            position: absolute;
-            bottom: 70px; /* Set height absolutely */
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between; /* Ensure buttons are equidistant */
-            padding: 0 30px; /* Add padding to create space from the edges */
-            max-width: 48.3%;
-        }
-        .signup-link {
-            position: absolute;
-            bottom: 30px; /* Match the position in signup.html */
-            left: 30px; /* Align with the form section */
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -38,15 +16,15 @@
             <a href="#" class="forgot">Forgot password?</a>
             <button class="login-btn">Login</button>
             <div class="social-buttons">
-                <button><img src="../images/google-icon.png" alt="Google"> Sign in with Google</button>
-                <button><img src="../images/apple-icon.png" alt="Apple"> Sign in with Apple</button>
+                <button><img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google"> Sign in with Google</button>
+                <button><img src="{{ url_for('static', filename='images/apple-icon.png') }}" alt="Apple"> Sign in with Apple</button>
             </div>
             <div class="signup-link">
                 Don’t have an account? <a href="/signup">Sign Up</a>
             </div>
         </div>
         <div class="image-section">
-            <img src="/images/AlbedoBase_XL_give_me_a_generix_pastel_colour_brown_and_pink_a_2.jpg" alt="Background Image">
+            <img src="{{ url_for('static', filename='images/AlbedoBase_XL_give_me_a_generix_pastel_colour_brown_and_pink_a_2.jpg') }}" alt="Background Image">
         </div>
     </div>
 </body>
