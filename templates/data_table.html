@@ -1,0 +1,78 @@
+{% include "includes/navbar.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ table_name | capitalize }} Data</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light gray background */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem; /* Rounded corners for the table */
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0; /* Light gray border */
+        }
+        th {
+            background-color: #1e3a8a; /* Dark blue for header */
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc; /* Slightly darker row for zebra striping */
+        }
+        tr:hover {
+            background-color: #e0f2fe; /* Light blue on hover */
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body class="p-8">
+    <div class="container mx-auto bg-white p-6 rounded-lg shadow-xl max-w-4xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Data from '{{ table_name }}' Table</h1>
+
+        {% if data %}
+            <div class="overflow-x-auto rounded-lg border border-gray-200">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            {% for column in columns %}
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider rounded-tl-lg {% if loop.last %} rounded-tr-lg {% endif %}">
+                                    {{ column }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for row in data %}
+                            <tr>
+                                {% for item in row %}
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {{ item }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center text-gray-600 mt-8">No data found in the '{{ table_name }}' table or an error occurred.</p>
+        {% endif %}
+    </div> <br>
+
+</body>
+</html>
