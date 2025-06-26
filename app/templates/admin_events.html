@@ -37,17 +37,37 @@
     }
 
     .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: #FFF3F3;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
     }
 
-    .header-left,
-    .header-right {
+
+
+    .header-left {
       display: flex;
       align-items: center;
       gap: 20px;
+    }
+
+    /* Left nav buttons next to hamburger */
+    .nav-menu-left {
+      display: flex;
+      gap: 15px;
+      margin-left: 10px;
+    }
+
+    /* Right nav buttons and avatar */
+    .nav-menu-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .btn {
@@ -73,11 +93,6 @@
       background: black;
     }
 
-    .nav-menu {
-      display: flex;
-      gap: 15px;
-    }
-
     .main-content {
       display: flex;
       padding: 0 40px;
@@ -92,6 +107,7 @@
       border-radius: 10px;
       width: 220px;
       height: fit-content;
+      margin-top: 80px;
     }
 
     .filter-panel h3 {
@@ -204,15 +220,19 @@
         gap: 10px;
       }
 
-      .nav-menu {
+      /* Stack left and right nav buttons vertically and hide by default */
+      .nav-menu-left,
+      .nav-menu-right {
+        width: 100%;
         display: none;
         flex-direction: column;
-        width: 100%;
         gap: 10px;
-        margin-top: 10px;
+        margin-left: 0;
       }
 
-      .nav-menu.show {
+      /* Show menus when toggled */
+      .nav-menu-left.show,
+      .nav-menu-right.show {
         display: flex;
       }
 
@@ -251,10 +271,14 @@
         <div></div>
         <div></div>
       </div>
+      <!-- Left nav buttons -->
+      <div id="navMenuLeft" class="nav-menu-left">
+        <button class="btn">Events</button>
+        <button class="btn">📅</button>
+      </div>
     </div>
-    <div id="navMenu" class="nav-menu">
-      <button class="btn">Events</button>
-      <button class="btn">📅</button>
+    <!-- Right nav buttons and avatar -->
+    <div id="navMenuRight" class="nav-menu-right">
       <button class="btn">Chat 🗨️</button>
       <button class="btn">Support</button>
       <img src="your-avatar.png" alt="Avatar" width="40" style="border-radius: 50%;" />
@@ -273,7 +297,7 @@
       <label><input type="checkbox" /> Housing</label>
       <button class="apply-btn">Apply Filter</button>
       <div class="add-event">
-        <a href="#">+ Add New Event</a>
+        <a href="{{ url_for('routes.add_event') }}">+ Add New Event</a>
       </div>
     </aside>
 
@@ -309,8 +333,8 @@
   <!-- JavaScript for Hamburger -->
   <script>
     function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      nav.classList.toggle("show");
+      document.getElementById("navMenuLeft").classList.toggle("show");
+      document.getElementById("navMenuRight").classList.toggle("show");
     }
   </script>
 </body>
