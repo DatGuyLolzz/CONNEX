@@ -51,3 +51,7 @@ def add_event():
             return redirect(url_for("routes.add_event"))
 
     return render_template("add_events.html")
+
+@routes.route("/admin")
+def admin_home():
+    return render_template("admin.html")
