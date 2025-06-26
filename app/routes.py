@@ -9,3 +9,7 @@ def login():
 @routes.route("/signup")
 def signup():
     return render_template("signup.html")
+
+@routes.route("/events-management")
+def events_management():
+    return render_template("admin_events.html")
