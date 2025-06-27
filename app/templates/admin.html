@@ -125,7 +125,9 @@
     </div>
 
     <div class="right-panel">
-      <button class="tile tile-small">Manage Accounts</button>
+      <form method="get" action="{{ url_for('routes.account_management') }}">
+        <button class="tile tile-small" type="submit">Manage Accounts</button>
+      </form>
       <button class="tile tile-small">Report Generation</button>
       <button class="tile tile-small">Manage Chats</button>
     </div>
