@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc714063-a107-4445-9d89-4220b62145bc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/acc_management.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/acc_details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/include/bg.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/include/bg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/include/nav_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/include/nav_bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/acc_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/acc_management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
