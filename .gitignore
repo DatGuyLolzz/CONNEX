@@ -1,8 +1,1 @@
-.venv
-
-__pycache__
-instance/
-
-.env
-
-wsgi.py
+*
