@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc714063-a107-4445-9d89-4220b62145bc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/acc_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/acc_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/acc_management.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/images/admin-profile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/include/nav_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/include/nav_bar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +41,11 @@
     &quot;git-widget-placeholder&quot;: &quot;Rebasing Keryn&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\keryn\OneDrive\Documents\GitHub\CONNEX\app\static\images" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CONNEX" />
