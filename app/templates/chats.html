@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chats</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff9a8b 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff9a8b;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.3);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            height: 600px;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .connex-ai-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255,255,255,0.6);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+        
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .chat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        
+        .chat-item.active {
+            background: rgba(255,120,120,0.6);
+            border-color: rgba(255,100,100,0.8);
+        }
+        
+        .chat-item:hover {
+            background: rgba(255,255,255,0.6);
+        }
+        
+        .chat-item.active:hover {
+            background: rgba(255,120,120,0.7);
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        
+        .chat-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .chat-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .chat-area {
+            flex: 1;
+            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .chat-header {
+            background: rgba(255,120,120,0.7);
+            padding: 20px 25px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chat-title-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="%23666"/><text x="20" y="26" text-anchor="middle" fill="white" font-size="16">👥</text></svg>');
+        }
+        
+        .chat-title-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .close-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,100,100,0.8);
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .messages-area {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message {
+            max-width: 60%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .message.user-1 {
+            background: rgba(150,150,150,0.8);
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 6px;
+        }
+        
+        .message.user-2 {
+            background: rgba(130,100,255,0.9);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 6px;
+        }
+        
+        .message-sender {
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+        
+        .message-input-container {
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 25px;
+            background: rgba(255,255,255,0.8);
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(130,100,255,0.9);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .calendar-icon::before { content: "📅"; }
+        .robot-icon::before { content: "🤖"; }
+        .search-icon::before { content: "🔍"; }
+        .send-icon::before { content: "➤"; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">♥</div>
+                <button class="nav-btn">Events</button>
+                <div class="calendar-icon" style="font-size: 24px;"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn">Chat 💬</button>
+                <button class="nav-btn">Support</button>
+                <div class="user-avatar">👤</div>
+            </div>
+        </header>
+        
+        <h1 class="page-title">Community Chats</h1>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="connex-ai-btn">
+                    <span class="robot-icon"></span>
+                    Chat with Connex AI
+                </div>
+                
+                <div class="search-box">
+                    <span class="search-icon"></span>
+                    <input type="text" class="search-input" placeholder="Search">
+                </div>
+                
+                <div class="chat-list">
+                    <div class="chat-item" onclick="selectChat('ang-mo-kio')">
+                        <div class="chat-avatar" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 40 40&quot;><circle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;20&quot; fill=&quot;%23e74c3c&quot;/><text x=&quot;20&quot; y=&quot;26&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;12&quot;>🏘️</text></svg>');"></div>
+                        <div class="chat-info">
+                            <div class="chat-name">Ang Mo kio community</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-item active" onclick="selectChat('parliament')">
+                        <div class="chat-avatar" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 40 40&quot;><circle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;20&quot; fill=&quot;%2334495e&quot;/><text x=&quot;20&quot; y=&quot;26&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;12&quot;>🏛️</text></svg>');"></div>
+                        <div class="chat-info">
+                            <div class="chat-name">Parliament gc 💬✈️✈️✈️</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-item" onclick="selectChat('boomers')">
+                        <div class="chat-avatar" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 40 40&quot;><circle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;20&quot; fill=&quot;%23333&quot;/><text x=&quot;20&quot; y=&quot;26&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;12&quot;>👴</text></svg>');"></div>
+                        <div class="chat-info">
+                            <div class="chat-name">The Boomersssss</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-item" onclick="selectChat('young-heart')">
+                        <div class="chat-avatar" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 40 40&quot;><circle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;20&quot; fill=&quot;%23f39c12&quot;/><text x=&quot;20&quot; y=&quot;26&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;12&quot;>💖</text></svg>');"></div>
+                        <div class="chat-info">
+                            <div class="chat-name">Young at Heart 💖💖</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-area">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <div class="chat-title-avatar"></div>
+                        <span class="chat-title-text">Parliament gc 💬✈️✈️✈️</span>
+                    </div>
+                    <button class="close-btn">×</button>
+                </div>
+                
+                <div class="messages-area" id="messages">
+                    <div class="message user-1">
+                        <div class="message-sender">Pritam Singh</div>
+                        <div>Are you a fruit? Cos ur a fineapple &lt;3 💝</div>
+                    </div>
+                    
+                    <div class="message user-1">
+                        <div class="message-sender">Han Huihui</div>
+                        <div>Calm down boys, Not here 😭</div>
+                    </div>
+                    
+                    <div class="message user-2">
+                        <div class="message-sender">Lawrence Wong</div>
+                        <div>Oh why thank you darling 😍😘</div>
+                    </div>
+                </div>
+                
+                <div class="message-input-container">
+                    <input type="text" class="message-input" placeholder="Enter Message" onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" onclick="sendMessage()">
+                        <span class="send-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function selectChat(chatId) {
+            // Remove active class from all chat items
+            document.querySelectorAll('.chat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            event.currentTarget.classList.add('active');
+            
+            // Update chat area based on selection
+            updateChatArea(chatId);
+        }
+        
+        function updateChatArea(chatId) {
+            const chatTitleText = document.querySelector('.chat-title-text');
+            const messagesArea = document.getElementById('messages');
+            
+            // Update chat title and clear messages
+            switch(chatId) {
+                case 'ang-mo-kio':
+                    chatTitleText.textContent = 'Ang Mo kio community';
+                    messagesArea.innerHTML = '<div class="message user-1"><div class="message-sender">Community Member</div><div>Welcome to Ang Mo Kio community chat!</div></div>';
+                    break;
+                case 'parliament':
+                    chatTitleText.textContent = 'Parliament gc 💬✈️✈️✈️';
+                    messagesArea.innerHTML = `
+                        <div class="message user-1">
+                            <div class="message-sender">Pritam Singh</div>
+                            <div>Are you a fruit? Cos ur a fineapple &lt;3 💝</div>
+                        </div>
+                        <div class="message user-1">
+                            <div class="message-sender">Han Huihui</div>
+                            <div>Calm down boys, Not here 😭</div>
+                        </div>
+                        <div class="message user-2">
+                            <div class="message-sender">Lawrence Wong</div>
+                            <div>Oh why thank you darling 😍😘</div>
+                        </div>
+                    `;
+                    break;
+                case 'boomers':
+                    chatTitleText.textContent = 'The Boomersssss';
+                    messagesArea.innerHTML = '<div class="message user-1"><div class="message-sender">Boomer</div><div>Back in my day...</div></div>';
+                    break;
+                case 'young-heart':
+                    chatTitleText.textContent = 'Young at Heart 💖💖';
+                    messagesArea.innerHTML = '<div class="message user-1"><div class="message-sender">Young Member</div><div>Age is just a number! 💖</div></div>';
+                    break;
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.querySelector('.message-input');
+            const messageText = input.value.trim();
+            
+            if (messageText) {
+                const messagesArea = document.getElementById('messages');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message user-2';
+                newMessage.innerHTML = `
+                    <div class="message-sender">You</div>
+                    <div>${messageText}</div>
+                `;
+                
+                messagesArea.appendChild(newMessage);
+                input.value = '';
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* Background Variation 4 - Blush Geometry */
+body {
+    background: linear-gradient(315deg, #fef7ff 0%, #fdf4ff 25%, #fae8ff 75%, #f3e8ff 100%);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+}
+
+.triangle-1 {
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 350px solid rgba(244, 114, 182, 0.3);
+    top: -100px;
+    right: -150px;
+    transform: rotate(25deg) scale(0.8);
+}
+
+.circle-1 {
+    width: 460px;
+    height: 460px;
+    background: linear-gradient(125deg, #db2777, #ec4899);
+    border-radius: 50%;
+    bottom: -200px;
+    left: -200px;
+    transform: rotate(-15deg) scale(0.9);
+    opacity: 0.4;
+}
+
+.rect-1 {
+    width: 180px;
+    height: 280px;
+    background: linear-gradient(55deg, #f9a8d4, #fbcfe8);
+    border-radius: 20px;
+    top: 20%;
+    left: 20%;
+    transform: rotate(38deg) scale(0.75);
+    opacity: 0.35;
+}
+
+.circle-2 {
+    width: 320px;
+    height: 320px;
+    background: linear-gradient(235deg, #be185d, #db2777);
+    border-radius: 50%;
+    top: 10%;
+    right: 20%;
+    transform: rotate(52deg) scale(0.6);
+    opacity: 0.3;
+}
+
+.hexagon-1 {
+    width: 120px;
+    height: 104px;
+    background: linear-gradient(165deg, #fce7f3, #fed7e2);
+    position: relative;
+    border-radius: 10px;
+    top: 45%;
+    right: 30%;
+    transform: rotate(-25deg) scale(0.65);
+    opacity: 0.25;
+}
+
+.hexagon-1:before {
+    content: "";
+    position: absolute;
+    top: -26px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 30px solid rgba(252, 231, 243, 0.25);
+}
+
+.circle-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(295deg, #fda4af, #fbb6ce);
+    border-radius: 50%;
+    bottom: 20%;
+    right: 15%;
+    transform: rotate(78deg) scale(0.5);
+    opacity: 0.3;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(var(--rotation)) scale(var(--scale)); }
+    100% { transform: rotate(calc(var(--rotation) + 360deg)) scale(var(--scale)); }
+}
+
+.triangle-1 { animation: rotate 20s linear infinite; --rotation: 25deg; --scale: 0.8; }
+.hexagon-1 { animation: rotate 25s linear infinite reverse; --rotation: -25deg; --scale: 0.65; }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+    <div class="shape circle-1"></div>
+    <div class="shape circle-2"></div>
+    <div class="shape circle-3"></div>
+    <div class="shape circle-4"></div>
+    <div class="shape circle-5"></div>
+    <div class="shape rect-1"></div>
+    <div class="shape triangle-1"></div>
+    <div class="shape hexagon-1"></div>
+    <!-- Add other shape classes as defined in each variation -->
+</div>
+</body>
+</html>
